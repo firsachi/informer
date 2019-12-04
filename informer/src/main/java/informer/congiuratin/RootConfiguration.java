@@ -29,7 +29,7 @@ public class RootConfiguration {
 	@Bean
 	public LocalEntityManagerFactoryBean getEntityManagerFactoryBean() {
 		LocalEntityManagerFactoryBean lemfb = new LocalEntityManagerFactoryBean();
-		lemfb.setPersistenceUnitName("kyivreclamaDS");
+		lemfb.setPersistenceUnitName("informerDS");
 		return lemfb;
 	}
 	
