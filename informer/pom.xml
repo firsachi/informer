@@ -80,7 +80,7 @@
 		<version-jstl>1.2</version-jstl>
 		<thymeleaf-version>3.0.11.RELEASE</thymeleaf-version>
 		<javax.servlet-api-version>4.0.1</javax.servlet-api-version>
-		<springframework-version>5.1.9.RELEASE</springframework-version>
+		<springframework-version>5.2.3.RELEASE</springframework-version>
 		<junit-jupiter-version>5.4.2</junit-jupiter-version>
 		<org.mockito-version>2.21.0</org.mockito-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
