@@ -3,7 +3,7 @@ import {urlRest} from './ConfigAPI.js';
 * Returns the array list company
 * @return {Objects} array company
 */
-async function getcompanyList() {
+async function getCompanyList() {
     const urlName = 'loadCompanies';
     let list = await $.getJSON(urlRest + urlName);
     return list;
@@ -15,4 +15,4 @@ async function getCompany(companyId){
     return company;
 };
 
-export {getcompanyList, getCompany};
+export {getCompanyList, getCompany};
