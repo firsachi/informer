@@ -18,4 +18,5 @@ $(async function( ) {
     const activeCompany = await navigation(0);
     const activeDepartment = renderDepartment(activeCompany);
     fillEmployee(activeCompany.id, activeDepartment);
+    $(document).foundation();
 });
