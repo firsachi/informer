@@ -6,4 +6,4 @@ function coreLink({url, linkText}) {
     return link;
 };
 
-export{coreLink};
+export{ coreLink };

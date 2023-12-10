@@ -1,6 +1,6 @@
 import { getListEmployee } from './api/EmployeeApi.js';
 import { renderEmployeeItem, fillHeaderEmployee } from "./employee.js";
-import { getDepartment } from "./api/DepartmentApi.js";
+//import { getDepartment } from "./api/DepartmentApi.js";
 import { getCompany } from "./api/CompanyAPI.js";
 import { renderDepartment } from "./department.js"; 
 
@@ -34,7 +34,7 @@ function fragmentDepartmentItem({id, name}, companyId) {
     link.addEventListener("click", async function(){
         const departmentId = this.getAttribute("data-department");
         const companyId = this.getAttribute("data-comapny");
-        const department = await getDepartment(departmentId);
+        //const department = await getDepartment(departmentId);
         fillHeaderEmployee(department);
         const listEmployee = await getListEmployee(companyId, departmentId);
         renderEmployeeItem(listEmployee);

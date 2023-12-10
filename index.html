@@ -14,20 +14,31 @@
   </head>
 
   <body>
-   
-    <nav id="navigation" class="top-bar">
+
+    <nav class="top-bar" id="navigation">
       <div class="top-bar-left">
         <ul id="companies" class="menu"></ul>
       </div>
     </nav>
 
-    <!-- new tag -->
-    <br>
-    <div class="collapse row">    
-      <div class="columns large-4">
-        <div id="menuDepartment" class="menu">
+    <div class="title-bar" data-responsive-toggle="navigation" data-hide-for="medium">
+      
+      <div class="title-bar-left">
+        <button class="menu-icon" type="button" data-open="offCanvasMenuLeft"></button>
+        <span class="title-bar-title">Menu</span>
+      </div>
 
-        </div>
+      <div class="title-bar-right"></div>
+
+    </div>
+
+    <div id="offCanvasMenuLeft" class="off-canvas position-left" data-off-canvas></div>
+
+    <br>
+    <div class="collapse row expanded">
+
+      <div  class="columns large-4 hide-for-small-only">
+        <div id="menuDepartment" class="menu"></div>
       </div>
 
       <div class="columns large-8">
@@ -43,17 +54,13 @@
             </div>
           </div>
 
-          <span id="infoEmployees">
-
-          </span>
+          <span id="infoEmployees"> </span>
 
         </div>
       </div>
+    
     </div>
 
-    <script type="text/javascript">
-    	$(document).foundation();
-    </script>
   </body>
 
 </html>
