@@ -1,7 +1,7 @@
 import { coreUl } from "./template/ul.js";
 import { coreLiMenu } from "./template/li.js";
 import { coreLink } from "./template/link.js";
-import { departmentEventListener } from "./template/DepartmentEventListener.js"
+import { departmentEventListener } from "./template/DepartmentEventListener.js";
 
 const paramMenuVerticalNested = {
     style: ["menu", "vertical", "nested"]

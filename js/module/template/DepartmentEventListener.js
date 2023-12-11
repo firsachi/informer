@@ -1,4 +1,4 @@
-import { getDepartment } from "../api/DepartmentApi";
+import { getDepartment } from '../api/DepartmentApi.js';
 
 function departmentEventListener(link) {
     link.addEventListener("click", async function(){

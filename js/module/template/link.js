@@ -1,3 +1,6 @@
+
+
+
 function coreLink({url, linkText}) {
     let link = document.createElement('a');
     let text = document.createTextNode(linkText);
