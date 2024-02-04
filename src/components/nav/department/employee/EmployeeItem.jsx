@@ -2,20 +2,20 @@ import { Box, ButtonBase, Card, CardContent, CardHeader, CardMedia, Divider, Gri
 import { styled } from '@mui/material/styles';
 
 export default function EmployeeItem({ employee }) {
-
+/*
     const Img = styled('img')({
         margin: 'auto',
         display: 'block',
         maxWidth: '100%',
         maxHeight: '100%',
     });
-
+*/
     const fullName = `${employee.surname} ${employee.name} ${employee.patronymic}`;
 
     const emailAdress = `mailto:${fullName}<${employee.email}>`;
 
     return (
-        <Grid item md={4} p={2}>
+        <Grid item md={6} p={2}>
             <Card>
                 <Grid container>
                     <Grid item md={3} p={1}>
