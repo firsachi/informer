@@ -1,10 +1,9 @@
 import axios from "axios";
-
-const baseURL = "http://localhost:8080/informer/api/";
+import confapi from "./confapi.json";
 
 async function EmployeeList({companyId, departmentId}) {
     try {
-        const loadEmployeesURL = `${baseURL}loadEmployes/${companyId}/${departmentId}`;
+        const loadEmployeesURL = `${confapi.baseUrl}loadEmployes/${companyId}/${departmentId}`;
         const response = await axios.get(loadEmployeesURL);
     
         if (response.status === 200) {
