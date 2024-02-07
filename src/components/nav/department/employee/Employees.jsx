@@ -34,7 +34,9 @@ export default function Employees({ selectedDepartment }) {
             }
         };
 
-        loadEmployees();
+        if (selectedDepartment) {
+            loadEmployees();
+        }
     }, [selectedDepartment]);
 
     return (
@@ -45,7 +47,7 @@ export default function Employees({ selectedDepartment }) {
             <Toolbar />
             <Container>
                 <Typography variant='h4' align='center'>
-                    {selectedDepartment.departmentName}
+                    {selectedDepartment && selectedDepartment.departmentName}
                 </Typography>
             </Container>
             <Toolbar />

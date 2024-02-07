@@ -1,58 +1,54 @@
 import React, { useEffect, useState } from 'react';
 import { AppBar, Toolbar, Container, Box, CssBaseline } from "@mui/material";
 import CompanyList from '../../api/CompanyFile';
-
 import DepartmentDrawer from './department/DepartmentDrawer';
 import CompanyButtonNav from './CompanyButtonNav';
 
 export default function CompanyNav() {
 
     const drawerWidth = 360;
-
-    const [companyItem, setCompanyItem] = useState([]);
+    const [comapanyButton, setCompanyButton] = useState([]);
+    const [setctCompany, setSelectCompany] = useState(null);
     const [departmentDrawer, setDepartmentDrawer] = useState([]);
-    const [selectCompany, setSelectCompany] = useState({});
-
 
     const handleCompanySelect = (selectCompany) => {
-        setSelectCompany(selectCompany);
-        console.log(selectCompany);
-        setDepartmentDrawer(
+        showDepartmentDrawer(selectCompany);
+    };
+
+    const showDepartmentDrawer = (company) => {
+        const departmentDrawer = (
             <DepartmentDrawer
                 drawerWidth={drawerWidth}
-                companyDepartment={selectCompany}
+                companyDepartment={company}
             />
         );
+        setDepartmentDrawer(departmentDrawer);
+    };
+
+    const loadCompany = async () => {
+        try {
+            const companyData = await CompanyList();
+            const firstCompany = companyData[0];
+            setSelectCompany(firstCompany);
+            setCompanyButton(
+                companyData.map((company) => (
+                    <CompanyButtonNav
+                        key={company.id}
+                        onCompanySelect={handleCompanySelect}
+                        company={company}
+                        selected={true}
+                    />
+                ))
+            );
+            showDepartmentDrawer(firstCompany);
+        } catch (error) {
+            console.error('Error fetching employee data:', error.message);
+        }
     };
 
     useEffect(() => {
-        const loadCompany = async () => {
-            try {
-                const companyData = await CompanyList();
-                setSelectCompany(companyData[0]);
-                setCompanyItem(
-                    companyData.map((company) => (
-                        <CompanyButtonNav
-                            key={company.id}
-                            onCompanySelect={handleCompanySelect}
-                            company={company}
-                            selected={selectCompany.id === company.id}
-                        />
-                    ))
-                );
-
-                setDepartmentDrawer(
-                    <DepartmentDrawer
-                        drawerWidth={drawerWidth}
-                        companyDepartment={companyData[0]}
-                    />
-                );
-            } catch (error) {
-                console.error('Error fetching employee data:', error.message);
-            }
-        };
         loadCompany();
-    }, []);
+    },[]);
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -64,7 +60,7 @@ export default function CompanyNav() {
                 <Container maxWidth="xl">
                     <Toolbar>
                         <Box>
-                            {companyItem}
+                            {comapanyButton}
                         </Box>
                     </Toolbar>
                 </Container>

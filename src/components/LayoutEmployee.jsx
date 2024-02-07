@@ -1,31 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import {  Stack } from '@mui/material';
+import React from 'react';
+import { Stack } from '@mui/material';
 import CompanyNav from './nav/CompanyNav';
 
-const departmentSelectOption = {
-  companyId: 0,
-  departmentId: 0,
-};
-
 export default function LayoutEmployee(props) {
-
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-
-  const [selectedDepartment, setSelectedDepartment] = useState({
-    companyId: 1,
-    departmentId: 2
-  });
-
-  const handleDepartmentSelect = (departmentSelect) => {
-    setSelectedDepartment({
-      companyId: departmentSelect.companyId,
-      departmentId: departmentSelect.departmentId
-    });
-  };
 
   return (
     <Stack>

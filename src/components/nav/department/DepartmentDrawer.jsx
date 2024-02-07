@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Divider, Drawer, List, Toolbar, Typography } from '@mui/material';
 import DepartmentItem from './DepartmentItem';
 import Employees from './employee/Employees';
@@ -11,9 +11,28 @@ export default function DepartmentDrawer({ drawerWidth, companyDepartment }) {
         departmentName: companyDepartment.departments[0].name,
     });
 
+    const [employees, setEmployees] = useState();
+
     const handleDepartmentSelect = (departmentSelect) => {
         setSelectedDepartment(departmentSelect);
     };
+
+    useEffect(() => {
+        if (companyDepartment) {
+            const initDepartment = {
+                companyId: companyDepartment.id,
+                departmentId: companyDepartment.departments[0].id,
+                departmentName: companyDepartment.departments[0].name,
+            };
+            setSelectedDepartment(initDepartment);
+        }
+    }, [companyDepartment]);
+
+    useEffect(() => {
+        if (selectedDepartment) {
+            setEmployees(<Employees selectedDepartment={selectedDepartment} />);
+        }
+    }, [selectedDepartment]);
 
     return (
         <>
@@ -47,7 +66,7 @@ export default function DepartmentDrawer({ drawerWidth, companyDepartment }) {
                     ))}
                 </List>
             </Drawer>
-            <Employees selectedDepartment={selectedDepartment} />
+            {employees}
         </>
     );
 };

@@ -1,37 +1,73 @@
-import React from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import Typography from "@mui/material/Typography";
+import React, { useEffect, useState } from 'react';
+import { AppBar, Toolbar, Container, Box, CssBaseline } from "@mui/material";
+import CompanyList from '../../api/CompanyFile';
+import DepartmentDrawer from './department/DepartmentDrawer';
+import CompanyButtonNav from './CompanyButtonNav';
 
-export default function NavApp(ptops) {
+export default function CompanyNav() {
 
-    const drawerWidth = ptops.drawerWidth;
-    const handleDrawerToggle = ptops.handleDrawerToggle;
+    const drawerWidth = 360;
+    const [companyItem, setCompanyItem] = useState([]);
+    const [departmentDrawer, setDepartmentDrawer] = useState(null);
+    const [selectCompany, setSelectCompany] = useState({});
+
+    const handleCompanySelect = (selectCompany) => {
+        setSelectCompany(selectCompany);
+        //console.log(selectCompany);
+        //showDepartmentDrawer();
+    };
+
+    const showDepartmentDrawer = (company) => {
+        const departmentDrawer = (
+            <DepartmentDrawer
+                drawerWidth={drawerWidth}
+                companyDepartment={company}
+            />
+        );
+        setDepartmentDrawer(departmentDrawer);
+    };
+
+    const loadCompany = async () => {
+        try {
+            const companyData = await CompanyList();
+            setSelectCompany(companyData[0]);
+            setCompanyItem(
+                companyData.map((company) => (
+                    <CompanyButtonNav
+                        key={company.id}
+                        onCompanySelect={handleCompanySelect}
+                        company={company}
+                        selected={selectCompany.id === company.id}
+                    />
+                ))
+            );
+            showDepartmentDrawer(companyData[0]);
+        } catch (error) {
+            console.error('Error fetching employee data:', error.message);
+        }
+    };
+
+    useEffect(() => {
+        loadCompany();
+    },[]);
 
     return (
-        <AppBar
-            position="fixed"
-            sx={{
-                width: { sm: `calc(100% - ${drawerWidth}px)` },
-                ml: { sm: `${drawerWidth}px` },
-            }}
-        >
-            <Toolbar>
-                <IconButton
-                    color="inherit"
-                    aria-label="open drawer"
-                    edge="start"
-                    onClick={handleDrawerToggle}
-                    sx={{ mr: 2, display: { sm: 'none' } }}
-                >
-                    <MenuIcon />
-                </IconButton>
-                <Typography variant="h6" noWrap component="div">
-                    Informer
-                </Typography>
-            </Toolbar>
-        </AppBar>
+        <Box sx={{ display: 'flex' }}>
+            <CssBaseline />
+            <AppBar
+                position="fixed"
+                sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+            >
+                <Container maxWidth="xl">
+                    <Toolbar>
+                        <Box>
+                            {companyItem}
+                        </Box>
+                    </Toolbar>
+                </Container>
+            </AppBar>
+            {departmentDrawer}
+        </Box>
     );
+
 };
